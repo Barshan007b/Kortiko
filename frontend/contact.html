@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Concierge | Kortiko</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <nav>
+        <div class="container flex justify-between align-center">
+            <a href="index.html" class="logo">KORTIKO</a>
+            <ul class="nav-links flex align-center">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="index.html#shop">Collection</a></li>
+                <li><a href="contact.html">Concierge</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="container" style="padding: 200px 0 100px;">
+        <div class="grid" style="grid-template-columns: 1fr 1.5fr; gap: 80px;">
+            <div>
+                <h1 style="font-size: 3.5rem; margin-bottom: 30px;">How May We <span style="font-style: italic;">Assist You?</span></h1>
+                <p style="color: var(--gray); margin-bottom: 40px;">Our concierge team is available for bespoke requests, corporate catering, or assistance with your Elite membership.</p>
+                
+                <div style="margin-bottom: 30px;">
+                    <h4 style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 10px;">Direct Office</h4>
+                    <p>Chanakyapuri, New Delhi<br>+91 11 4123 0000</p>
+                </div>
+                
+                <div>
+                    <h4 style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 10px;">Membership Inquiries</h4>
+                    <p>elite@kortiko.in</p>
+                </div>
+            </div>
+            
+            <div style="background: var(--off-white); padding: 60px; border-radius: 5px;">
+                <form id="contact-form">
+                    <div style="margin-bottom: 30px;">
+                        <label style="display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Full Name</label>
+                        <input type="text" id="name" required style="width: 100%; padding: 15px; border: none; border-bottom: 1px solid #ddd; background: transparent; outline: none; font-family: inherit;">
+                    </div>
+                    <div style="margin-bottom: 30px;">
+                        <label style="display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Email Address</label>
+                        <input type="email" id="email" required style="width: 100%; padding: 15px; border: none; border-bottom: 1px solid #ddd; background: transparent; outline: none; font-family: inherit;">
+                    </div>
+                    <div style="margin-bottom: 40px;">
+                        <label style="display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Message</label>
+                        <textarea id="message" rows="5" required style="width: 100%; padding: 15px; border: none; border-bottom: 1px solid #ddd; background: transparent; outline: none; font-family: inherit; resize: none;"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
+                </form>
+                <div id="form-feedback" style="display: none; margin-top: 20px; color: var(--gold); font-weight: 600; text-align: center;">
+                    Thank you. Your inquiry has been received.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+            
+            try {
+                const response = await fetch('/contact-submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if (response.ok) {
+                    document.getElementById('contact-form').style.display = 'none';
+                    document.getElementById('form-feedback').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+__pycache__
+*.pyc
+kortiko.db
+.env
+.git
+.gitignore

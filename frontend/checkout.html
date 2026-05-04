@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Kortiko</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .checkout-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; padding: 150px 0; }
+        .checkout-box { padding: 40px; border: 1px solid #eee; }
+        .slot-card { border: 1px solid #eee; padding: 20px; margin-bottom: 10px; cursor: pointer; transition: var(--transition); }
+        .slot-card:hover { border-color: var(--gold); }
+        .slot-card.selected { border-color: var(--gold); background: var(--off-white); }
+        .priority-info { font-size: 0.8rem; color: var(--gold); margin-top: 5px; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container flex justify-between align-center">
+            <a href="index.html" class="logo">KORTIKO</a>
+            <ul class="nav-links flex align-center">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="index.html#shop">Collection</a></li>
+                <li><a href="contact.html">Concierge</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container checkout-grid">
+        <div>
+            <h1 style="margin-bottom: 40px;">Finalize <span style="font-style: italic;">Selections</span></h1>
+            
+            <div style="margin-bottom: 50px;">
+                <h3 style="margin-bottom: 20px;">1. Delivery Details</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <input type="text" placeholder="Address Line 1" style="width: 100%; padding: 15px; border: 1px solid #eee;">
+                    <input type="text" placeholder="Apartment / Suite" style="width: 100%; padding: 15px; border: 1px solid #eee;">
+                    <input type="text" placeholder="City" style="width: 100%; padding: 15px; border: 1px solid #eee;">
+                    <input type="text" placeholder="Postcode" style="width: 100%; padding: 15px; border: 1px solid #eee;">
+                </div>
+            </div>
+
+            <div style="margin-bottom: 50px;">
+                <h3 style="margin-bottom: 20px;">2. Priority Delivery Slots</h3>
+                <div class="slot-card selected">
+                    <div class="flex justify-between">
+                        <span>Express Priority (30-45 mins)</span>
+                        <strong>Free</strong>
+                    </div>
+                    <div class="priority-info">Elite Member Privilege: Instant Dispatch</div>
+                </div>
+                <div class="slot-card">
+                    <div class="flex justify-between">
+                        <span>Scheduled Evening (19:00 - 20:00)</span>
+                        <strong>Free</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 50px;">
+                <h3 style="margin-bottom: 20px;">3. Payment Method</h3>
+                <div style="padding: 20px; border: 1px solid var(--gold); background: var(--off-white); display: flex; align-items: center; gap: 20px;">
+                    <div style="width: 50px; height: 30px; background: #333; border-radius: 4px;"></div>
+                    <span>Arjun Malhotra (**** 9921)</span>
+                </div>
+            </div>
+
+            <button id="place-order" class="btn btn-primary" style="width: 100%; padding: 20px;">Complete Purchase</button>
+        </div>
+
+        <div>
+            <div class="checkout-box">
+                <h3 style="margin-bottom: 30px;">Order Summary</h3>
+                <div id="checkout-items">
+                    <!-- Items here -->
+                </div>
+                <div style="border-top: 1px solid #eee; margin-top: 20px; padding-top: 20px;">
+                    <div class="flex justify-between" style="margin-bottom: 10px;">
+                        <span>Subtotal</span>
+                        <span id="subtotal">₹0</span>
+                    </div>
+                    <div class="flex justify-between" style="margin-bottom: 10px;">
+                        <span>Priority Handling</span>
+                        <span style="color: var(--gold);">Comped</span>
+                    </div>
+                    <div class="flex justify-between" style="margin-top: 20px; font-weight: 700; font-size: 1.4rem;">
+                        <span>Total</span>
+                        <span id="grand-total">₹0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px; padding: 20px; background: var(--off-white); font-size: 0.85rem; color: var(--gray);">
+                <p><strong>Note:</strong> Your order contains both Gourmet Meals and Lifestyle Groceries. They will be packaged separately but delivered in a single priority shipment.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="success-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--white); z-index: 2000; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+        <h1 style="font-size: 4rem; margin-bottom: 20px;">Order <span style="font-style: italic;">Confirmed</span></h1>
+        <p style="font-size: 1.2rem; color: var(--gray); margin-bottom: 40px;">Thank you, Arjun. Your curated selections are being prepared by our partners.</p>
+        <p id="tracking-id" style="font-family: monospace; letter-spacing: 2px; margin-bottom: 40px;"></p>
+        <a href="index.html" class="btn btn-primary">Return to Collection</a>
+    </div>
+
+    <script>
+        const API_URL = window.location.origin;
+        let cart = JSON.parse(localStorage.getItem('kortiko_cart')) || [];
+
+        function renderCheckout() {
+            const container = document.getElementById('checkout-items');
+            container.innerHTML = cart.map(item => `
+                <div class="flex justify-between align-center" style="margin-bottom: 15px;">
+                    <div class="flex align-center" style="gap: 15px;">
+                        <img src="${item.image_url}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                        <div>
+                            <div style="font-weight: 600;">${item.name}</div>
+                            <div style="font-size: 0.8rem; color: var(--gray);">${item.quantity} x ₹${item.price.toLocaleString('en-IN')}</div>
+                        </div>
+                    </div>
+                    <strong>₹${(item.price * item.quantity).toLocaleString('en-IN')}</strong>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            document.getElementById('subtotal').textContent = `₹${total.toLocaleString('en-IN')}`;
+            document.getElementById('grand-total').textContent = `₹${total.toLocaleString('en-IN')}`;
+        }
+
+        document.getElementById('place-order').addEventListener('click', async () => {
+            if (cart.length === 0) return;
+            
+            const btn = document.getElementById('place-order');
+            btn.textContent = 'Processing...';
+            btn.disabled = true;
+
+            try {
+                // Submit order
+                const orderRes = await fetch(`${API_URL}/orders`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        items: cart.map(i => ({ product_id: i.id, quantity: i.quantity }))
+                    })
+                });
+                
+                // Process payment simulation
+                const payRes = await fetch(`${API_URL}/process-payment`, { method: 'POST' });
+                const payData = await payRes.json();
+
+                if (payData.status === 'success') {
+                    localStorage.removeItem('kortiko_cart');
+                    document.getElementById('success-overlay').style.display = 'flex';
+                    document.getElementById('tracking-id').textContent = `ID: ${payData.transaction_id}`;
+                }
+            } catch (error) {
+                console.error('Checkout error:', error);
+                btn.textContent = 'Error. Try Again.';
+                btn.disabled = false;
+            }
+        });
+
+        renderCheckout();
+    </script>
+</body>
+</html>

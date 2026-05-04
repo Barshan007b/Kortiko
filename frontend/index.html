@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kortiko India | Curated Gourmet &amp; Grocery, Delivered with Care</title>
+    <meta name="description" content="India's premium food and grocery curation platform. Order royal Awadhi Biryani, Alphonso Mangoes, Kashmiri Saffron and more. Elite delivery concierge service.">
+    <meta name="keywords" content="premium food delivery India, gourmet food India, Alphonso Mango, Dum Biryani, luxury grocery India">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        ✦ Free Priority Dispatch for Elite Members &nbsp;&nbsp;|&nbsp;&nbsp; Now serving Mumbai, Delhi, Bengaluru &nbsp;&nbsp;|&nbsp;&nbsp; Arjun Malhotra — Elite Tier Active ✦
+    </div>
+
+    <!-- Navigation -->
+    <nav id="main-nav">
+        <div class="container flex justify-between align-center">
+            <a href="index.html" class="logo">KORTIKO</a>
+            <ul class="nav-links flex align-center">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="#shop">Collection</a></li>
+                <li><a href="contact.html">Concierge</a></li>
+                <li style="position: relative;">
+                    <a href="#" id="cart-toggle">Cart (<span id="cart-count">0</span>)</a>
+                </li>
+                <li><span class="priority-badge badge-elite">Elite</span></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-tag">🇮🇳 India's Premium Curation Platform</div>
+                <h1>The Art of<br><span style="color: var(--gold);">Indian</span><br>Curation</h1>
+                <p>Experience a dual world of royal chef-prepared meals and the finest artisanal groceries — from Awadhi Biryanis to Devgad Alphonso Mangoes — delivered with unprecedented priority care.</p>
+                <div class="hero-ctas">
+                    <a href="#food" class="btn btn-gold">Order Food</a>
+                    <a href="#grocery" class="btn btn-outline" style="color: white; border-color: rgba(255,255,255,0.4);">Shop Groceries</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image-overlay" style="background-image: url('https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?w=1400');"></div>
+        <div class="hero-scroll-indicator">
+            <span>Scroll</span>
+            <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><rect x="6" y="2" width="4" height="4" rx="2" fill="rgba(255,255,255,0.5)"/><rect x="7" y="10" width="2" height="14" fill="rgba(255,255,255,0.3)"/></svg>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="reveal">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Premium Products</span>
+                </div>
+                <div class="reveal">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Metro Cities</span>
+                </div>
+                <div class="reveal">
+                    <span class="stat-number">45 min</span>
+                    <span class="stat-label">Elite Dispatch</span>
+                </div>
+                <div class="reveal">
+                    <span class="stat-number">9.8</span>
+                    <span class="stat-label">Avg. RFM Score</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dual Entry Section -->
+    <section class="dual-entry">
+        <div class="container">
+            <div class="entry-grid reveal">
+                <div class="entry-card" onclick="location.href='#food'">
+                    <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?w=900" alt="Gourmet Indian Food">
+                    <div class="entry-content">
+                        <h3>Gourmet Dining</h3>
+                        <p>Royal chef-crafted Indian meals for immediate indulgence.</p>
+                    </div>
+                </div>
+                <div class="entry-card" onclick="location.href='#grocery'">
+                    <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=900" alt="Premium Indian Groceries">
+                    <div class="entry-content">
+                        <h3>Lifestyle Grocery</h3>
+                        <p>The finest Indian ingredients for your culinary creations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Collection -->
+    <section class="container" style="padding: 100px 0;" id="shop">
+        <div class="section-header reveal">
+            <h2>Seasonal <span style="font-style: italic;">Harvest</span></h2>
+            <p>Hand-picked selections from our curated Indian partners this month.</p>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar reveal">
+            <button class="filter-pill active" data-filter="all">All</button>
+            <button class="filter-pill" data-filter="Food" id="food">Gourmet Food</button>
+            <button class="filter-pill" data-filter="Grocery" id="grocery">Lifestyle Grocery</button>
+            <button class="filter-pill" data-filter="featured">Featured Only</button>
+        </div>
+
+        <div class="product-grid" id="product-list">
+            <!-- Skeleton Loaders -->
+            <div class="skeleton-card">
+                <div class="skeleton skeleton-img"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text short"></div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton skeleton-img"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text short"></div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton skeleton-img"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text short"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Editorial Callout -->
+    <section class="editorial-callout">
+        <div class="container reveal" style="max-width: 800px;">
+            <h2 style="font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 24px;">Beyond Delivery.<br><span style="color: var(--gold);">A Partner Ecosystem.</span></h2>
+            <p style="font-size: 1.1rem; color: rgba(255,255,255,0.5); margin-bottom: 48px; max-width: 600px; margin-left: auto; margin-right: auto;">Our delivery partners are not just couriers — they are curators of your experience, trained to handle premium goods with the precision and discretion of a world-class concierge.</p>
+            <a href="about.html" class="btn btn-outline" style="color: white; border-color: rgba(255,255,255,0.3);">Learn Our Philosophy</a>
+        </div>
+    </section>
+
+    <!-- AI Concierge FAB -->
+    <div class="ai-fab" id="ai-toggle" title="Open AI Concierge">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    </div>
+
+    <!-- Drawer Overlay -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+
+    <!-- AI Drawer -->
+    <div class="ai-drawer" id="ai-drawer">
+        <div class="ai-header">
+            <div>
+                <h3>AI CONCIERGE</h3>
+                <div style="font-size:0.7rem; color: var(--gold); margin-top: 4px; letter-spacing: 1px;">ARJUN · ELITE MEMBER</div>
+            </div>
+            <div class="ai-header-close" id="ai-close">&times;</div>
+        </div>
+        <div class="ai-messages" id="ai-messages">
+            <div class="msg msg-bot">Namaste, Arjun 🙏 I am your personal concierge. How can I assist your lifestyle today? Ask me about our Biryani, Saffron, Mango, or wellness selections.</div>
+        </div>
+        <div class="ai-input-area">
+            <input type="text" id="ai-input" placeholder="Ask about Biryani, Saffron, Ghee...">
+            <button class="btn btn-gold" id="ai-send" style="padding: 12px 20px; border-radius: 50px;">Send</button>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>YOUR SELECTIONS</h3>
+            <div class="ai-header-close" id="cart-close">&times;</div>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <div class="cart-empty">
+                <div class="cart-empty-icon">🛒</div>
+                <p>Your selections are empty.</p>
+                <p style="font-size: 0.8rem; margin-top: 8px; color: var(--gray);">Start curating your order.</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cart-total-amount">₹0</span>
+            </div>
+            <a href="checkout.html" class="btn btn-primary" style="width: 100%; text-align: center; display: block;">Proceed to Checkout</a>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">KORTIKO</div>
+                    <p style="color: rgba(255,255,255,0.4); font-size: 0.88rem; max-width: 280px; line-height: 1.7;">India's premium food and grocery curation platform. Curated choices, delivered with royal care.</p>
+                    <div style="margin-top: 24px; color: rgba(255,255,255,0.25); font-size: 0.78rem; letter-spacing: 1px;">MUMBAI · DELHI · BENGALURU</div>
+                </div>
+                <div class="footer-links">
+                    <h4>Experience</h4>
+                    <ul>
+                        <li><a href="#">Chef Specials</a></li>
+                        <li><a href="#">Seasonal Harvest</a></li>
+                        <li><a href="#">Organic Market</a></li>
+                        <li><a href="#">Priority Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="#">Partner with us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter / X</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2025 KORTIKO INDIA. ALL RIGHTS RESERVED.</span>
+                <span>elite@kortiko.in</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Scroll-based nav
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(el => {
+                if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); }
+            });
+        }, { threshold: 0.12 });
+        reveals.forEach(r => observer.observe(r));
+    </script>
+</body>
+</html>
