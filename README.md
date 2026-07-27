@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/Cloud%20Run-Deployed-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" />
   <br/><br/>
-  <strong>🔗 Live Demo:</strong> <a href="https://kortiko-platform-925858370178.us-central1.run.app">https://kortiko-platform-925858370178.us-central1.run.app</a>
+  
 </div>
 
 ---
